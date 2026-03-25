@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>SBTET Question Paper Portal — C23 Scheme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+<style>
+:root{--ink:#0d0d14;--card:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08);--accent:#6c63ff;--accent2:#f72585;--accent3:#4cc9f0;--text:#e8e8f0;--muted:#8888a8;--glow:rgba(108,99,255,0.35);}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{font-family:'Syne',sans-serif;}
+button{font-family:inherit;cursor:pointer;}
+a{text-decoration:none;color:inherit;}
+
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 80% 60% at 20% -10%,rgba(108,99,255,.18) 0%,transparent 60%),
+             radial-gradient(ellipse 60% 50% at 80% 110%,rgba(76,201,240,.12) 0%,transparent 55%),
+             radial-gradient(ellipse 40% 40% at 60% 40%,rgba(247,37,133,.08) 0%,transparent 50%);}
+body>*{position:relative;z-index:1;}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:100;background:rgba(13,13,20,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 1.25rem;}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo-icon{width:36px;height:36px;min-width:36px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:15px;color:#fff;}
+.logo-text{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;line-height:1.2;}
+.logo-text span{color:var(--accent);}
+.logo-sub{font-size:0.6rem;color:var(--muted);}
+.badge{font-size:0.62rem;font-weight:700;padding:3px 9px;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;letter-spacing:0.04em;white-space:nowrap;}
+
+/* HERO */
+.hero{padding:70px 1.25rem 50px;text-align:center;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);padding:5px 14px;border-radius:99px;border:1px solid rgba(108,99,255,0.3);background:rgba(108,99,255,0.08);margin-bottom:22px;}
+.hero h1{font-size:clamp(1.8rem,6vw,3.8rem);font-weight:800;line-height:1.1;background:linear-gradient(135deg,#fff 30%,var(--accent) 70%,var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:18px;}
+.hero p{font-size:clamp(0.88rem,2.5vw,1.05rem);color:var(--muted);max-width:520px;margin:0 auto 36px;line-height:1.7;}
+.hero-stats{display:flex;justify-content:center;gap:clamp(14px,5vw,40px);flex-wrap:wrap;}
+.stat{text-align:center;}
+.stat-num{font-family:'Syne',sans-serif;font-size:clamp(1.3rem,4vw,1.8rem);font-weight:800;color:#fff;}
+.stat-num span{background:linear-gradient(90deg,var(--accent),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.stat-label{font-size:0.74rem;color:var(--muted);margin-top:2px;}
+
+/* DIVIDER */
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0 1.25rem;}
+
+/* SELECTION */
+.selection-panel{max-width:880px;margin:46px auto 0;padding:0 1.25rem 50px;}
+.glass-strong{background:rgba(255,255,255,0.06);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:clamp(18px,4vw,38px);}
+.panel-title{font-family:'Syne',sans-serif;font-size:clamp(1.05rem,3vw,1.35rem);font-weight:700;margin-bottom:6px;}
+.panel-sub{color:var(--muted);font-size:0.87rem;margin-bottom:24px;}
+.step-label{display:flex;align-items:center;gap:9px;font-size:0.73rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:12px;}
+.step-num{width:20px;height:20px;min-width:20px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));font-size:0.65rem;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;}
+
+/* BRANCH GRID */
+.branch-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-bottom:26px;}
+.branch-card{cursor:pointer;padding:16px 10px;background:var(--card);border:1px solid var(--border);border-radius:13px;text-align:center;transition:all 0.28s cubic-bezier(0.34,1.56,0.64,1);position:relative;overflow:hidden;user-select:none;-webkit-tap-highlight-color:transparent;}
+.branch-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--accent),var(--accent2));opacity:0;transition:opacity 0.28s;}
+.branch-card:hover{transform:translateY(-3px) scale(1.02);border-color:rgba(108,99,255,0.4);box-shadow:0 10px 30px rgba(108,99,255,0.2);}
+.branch-card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 6px 26px var(--glow);}
+.branch-card.active::before{opacity:0.1;}
+.branch-card .icon{font-size:1.55rem;margin-bottom:8px;position:relative;z-index:1;}
+.branch-card .code{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;position:relative;z-index:1;}
+.branch-card .full-name{font-size:0.63rem;color:var(--muted);margin-top:3px;line-height:1.3;position:relative;z-index:1;}
+.branch-card.active .full-name{color:rgba(255,255,255,0.7);}
+
+/* SEMESTER */
+.sem-grid{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:30px;}
+.sem-btn{padding:9px 20px;background:var(--card);border:1px solid var(--border);border-radius:99px;font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:600;color:var(--text);transition:all 0.22s;user-select:none;-webkit-tap-highlight-color:transparent;}
+.sem-btn:hover{border-color:rgba(108,99,255,0.5);color:#fff;transform:translateY(-2px);}
+.sem-btn.active{background:linear-gradient(90deg,var(--accent),#8b85ff);border-color:transparent;color:#fff;box-shadow:0 4px 18px var(--glow);}
+
+/* CTA */
+.cta-wrap{text-align:center;}
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 28px;border-radius:13px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:0.92rem;border:none;transition:all 0.25s;box-shadow:0 4px 22px rgba(108,99,255,0.4);position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(108,99,255,0.5);}
+.btn-primary:active{transform:translateY(0);}
+.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,0.28);transform:scale(0);animation:rippleAnim 0.6s linear;pointer-events:none;}
+@keyframes rippleAnim{to{transform:scale(4);opacity:0;}}
+.selection-hint{margin-top:10px;font-size:0.77rem;color:var(--muted);}
+
+/* FEATURES */
+.features{max-width:1100px;margin:0 auto;padding:14px 1.25rem 65px;}
+.features-title{text-align:center;font-size:clamp(1.25rem,3vw,1.55rem);font-weight:700;margin-bottom:6px;}
+.features-sub{text-align:center;color:var(--muted);margin-bottom:32px;font-size:0.88rem;}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px;}
+.feature-card{padding:22px 18px;background:var(--card);border:1px solid var(--border);border-radius:15px;transition:all 0.25s;}
+.feature-card:hover{border-color:rgba(108,99,255,0.3);transform:translateY(-3px);box-shadow:0 10px 34px rgba(0,0,0,0.25);}
+.feature-icon{width:42px;height:42px;border-radius:11px;margin-bottom:13px;display:flex;align-items:center;justify-content:center;font-size:1rem;}
+.feature-card h4{font-size:0.93rem;font-weight:700;margin-bottom:6px;}
+.feature-card p{font-size:0.82rem;color:var(--muted);line-height:1.6;}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:34px 1.25rem;text-align:center;color:var(--muted);font-size:0.82rem;}
+
+/* TOAST */
+#toast-container{position:fixed;bottom:18px;right:18px;z-index:9999;display:flex;flex-direction:column;gap:8px;max-width:calc(100vw - 36px);}
+.toast{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;background:rgba(22,22,36,0.97);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);box-shadow:0 6px 26px rgba(0,0,0,0.4);animation:toastIn 0.35s cubic-bezier(0.34,1.56,0.64,1);font-size:0.86rem;}
+.toast.success .toast-icon{color:#4ade80;}
+.toast.error   .toast-icon{color:#f87171;}
+@keyframes toastIn {from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:translateX(0)}}
+@keyframes toastOut{to{opacity:0;transform:translateX(28px)}}
+
+@keyframes fadeInUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeInUp 0.65s ease both;}
+.delay-3{animation-delay:0.25s;}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+  .logo-sub{display:none;}
+  .hero{padding:50px 1rem 36px;}
+  .branch-grid{grid-template-columns:repeat(2,1fr);}
+  .branch-card{padding:14px 8px;}
+  .branch-card .icon{font-size:1.35rem;margin-bottom:6px;}
+  .sem-btn{padding:8px 14px;font-size:0.78rem;}
+  .btn-primary{width:100%;padding:13px 18px;}
+  .features-grid{grid-template-columns:repeat(2,1fr);}
+  #toast-container{right:10px;bottom:10px;}
+}
+@media(max-width:400px){
+  .branch-grid{grid-template-columns:repeat(2,1fr);}
+  .features-grid{grid-template-columns:1fr;}
+  .hero-stats{gap:12px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
+      <div>
+        <div class="logo-text">SBTET <span></span></div>
+        <div class="logo-sub">Question Paper Portal</div>
+      </div>
+    </div>
+    <div class="badge">C23 SCHEME</div>
+  </div>
+</header>
+
+<section class="hero fade-up">
+  <div class="hero-eyebrow"><i class="fas fa-star"></i> C23 Scheme &#8212;  question Papers</div>
+  <div class="glass-strong">
+  <H1><p class="title"> SBTET<BR>  QUESTION PAPER PORTAL</p></H1></div>
+  <p>Access previous year question papers for all branches and semesters under the C23 scheme.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num"><span>4</span></div><div class="stat-label">Branches</div></div>
+    <div class="stat"><div class="stat-num"><span>4</span></div><div class="stat-label">Semesters</div></div>
+    <div class="stat"><div class="stat-num"><span>70+</span></div><div class="stat-label">Subjects</div></div>
+    <div class="stat"><div class="stat-num"><span>&#x221e;</span></div><div class="stat-label">Free Downloads</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="selection-panel">
+  <div class="glass-strong">
+    <p class="panel-title">Browse Question Papers</p>
+    <p class="panel-sub">Select your branch and semester to find relevant papers</p>
+
+    <div class="step-label"><div class="step-num">1</div> Choose Your Branch</div>
+    <div class="branch-grid">
+      {% set branch_icons = {'CME':'💻','ECE':'📡','ME':'⚙️','CIVIL':'🏗️'} %}
+      {% for b in branches %}
+      <div class="branch-card" data-branch="{{ b.code }}">
+        <div class="icon">{{ branch_icons.get(b.code, '📚') }}</div>
+        <div class="code">{{ b.code }}</div>
+        <div class="full-name">{{ b.name }}</div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="step-label"><div class="step-num">2</div> Choose Semester</div>
+    <div class="sem-grid">
+      {% for s in semesters %}
+      <button class="sem-btn" data-sem="{{ s.name }}">{{ s.name }}</button>
+      {% endfor %}
+    </div>
+
+    <div class="cta-wrap">
+      <button class="btn-primary" id="find-papers-btn" onclick="goToPapers(event)">
+        <i class="fas fa-search"></i> Find Question Papers
+      </button>
+      <p class="selection-hint" id="selection-hint">Select a branch and semester to continue</p>
+    </div>
+  </div>
+</section>
+
+
+
+<footer>
+  <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;margin-bottom:6px;color:var(--text);">SBTET Question Paper Hub</div>
+  <div>C23 Scheme &middot; State Board of Technical Education &amp; Training, Andhra Pradesh</div>
+  <div style="margin-top:6px;font-size:0.74rem;color:#555;">For educational purposes only. All papers are property of SBTET AP.</div>
+</footer>
+
+<div id="toast-container"></div>
+
+<script>
+var selectedBranch = null;
+var selectedSem = null;
+
+$(document).ready(function(){
+  selectedBranch = sessionStorage.getItem('branch') || null;
+  selectedSem    = sessionStorage.getItem('semester') || null;
+  if(selectedBranch) $('.branch-card[data-branch="'+selectedBranch+'"]').addClass('active');
+  if(selectedSem)    $('.sem-btn[data-sem="'+selectedSem+'"]').addClass('active');
+  updateHint();
+
+  $('.branch-card').on('click', function(){
+    $('.branch-card').removeClass('active');
+    $(this).addClass('active');
+    selectedBranch = $(this).data('branch');
+    sessionStorage.setItem('branch', selectedBranch);
+    updateHint();
+  });
+  $('.sem-btn').on('click', function(){
+    $('.sem-btn').removeClass('active');
+    $(this).addClass('active');
+    selectedSem = $(this).data('sem');
+    sessionStorage.setItem('semester', selectedSem);
+    updateHint();
+  });
+});
+
+function updateHint(){
+  if(selectedBranch && selectedSem){
+    $('#selection-hint').text('Ready! '+selectedBranch+' \u00b7 '+selectedSem).css('color','#4cc9f0');
+  } else if(selectedBranch){
+    $('#selection-hint').text('Now select a semester').css('color','var(--muted)');
+  } else {
+    $('#selection-hint').text('Select a branch and semester to continue').css('color','var(--muted)');
+  }
+}
+
+function goToPapers(e){
+  if(!selectedBranch || !selectedSem){ showToast('Please select a branch and semester first','error'); return; }
+  var btn = document.getElementById('find-papers-btn');
+  var r = document.createElement('span');
+  r.className='ripple';
+  var rect=btn.getBoundingClientRect(), sz=Math.max(rect.width,rect.height);
+  r.style.cssText='width:'+sz+'px;height:'+sz+'px;left:'+((e.clientX-rect.left)-sz/2)+'px;top:'+((e.clientY-rect.top)-sz/2)+'px;';
+  btn.appendChild(r);
+  setTimeout(function(){ r.remove(); },700);
+  setTimeout(function(){ window.location.href='/papers?branch='+encodeURIComponent(selectedBranch)+'&semester='+encodeURIComponent(selectedSem); },120);
+}
+
+function showToast(msg,type){
+  type=type||'success';
+  var icon=type==='success'?'check-circle':'exclamation-circle';
+  var t=$('<div class="toast '+type+'"><span class="toast-icon"><i class="fas fa-'+icon+'"></i></span><span>'+msg+'</span></div>');
+  $('#toast-container').append(t);
+  setTimeout(function(){ t.css('animation','toastOut 0.35s forwards'); setTimeout(function(){ t.remove(); },350); },3500);
+}
+</script>
+</body>
+</html>

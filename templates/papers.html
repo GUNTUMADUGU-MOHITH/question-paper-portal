@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Question Papers &#8212; SBTET </title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+<style>
+:root{--ink:#0d0d14;--card:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08);--accent:#6c63ff;--accent2:#f72585;--accent3:#4cc9f0;--text:#e8e8f0;--muted:#8888a8;--glow:rgba(108,99,255,0.35);}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{font-family:'Syne',sans-serif;}
+a{text-decoration:none;color:inherit;}
+button{font-family:inherit;cursor:pointer;}
+
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 80% 60% at 20% -10%,rgba(108,99,255,.15) 0%,transparent 60%),
+             radial-gradient(ellipse 60% 50% at 80% 110%,rgba(76,201,240,.1) 0%,transparent 55%);}
+body>*{position:relative;z-index:1;}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:100;background:rgba(13,13,20,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 1.25rem;}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo-icon{width:36px;height:36px;min-width:36px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:15px;color:#fff;}
+.logo-text{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;line-height:1.2;}
+.logo-text span{color:var(--accent);}
+.logo-sub{font-size:0.6rem;color:var(--muted);}
+.badge{font-size:0.62rem;font-weight:700;padding:3px 9px;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;white-space:nowrap;}
+.back-btn{display:flex;align-items:center;gap:7px;padding:7px 14px;border-radius:9px;border:1px solid var(--border);font-size:0.82rem;color:var(--text);background:var(--card);transition:all 0.2s;white-space:nowrap;}
+.back-btn:hover{border-color:rgba(108,99,255,0.4);color:#fff;}
+.hdr-right{display:flex;align-items:center;gap:10px;}
+
+/* TOP BAR */
+.topbar{max-width:1200px;margin:0 auto;padding:20px 1.25rem 0;}
+.breadcrumb{display:flex;align-items:center;gap:7px;font-size:0.77rem;color:var(--muted);margin-bottom:16px;flex-wrap:wrap;}
+.breadcrumb a{color:var(--accent);}
+.page-title{font-size:clamp(1.3rem,4vw,1.8rem);font-weight:800;margin-bottom:4px;}
+.page-sub{color:var(--muted);font-size:0.88rem;}
+
+/* CONTROLS */
+.controls{max-width:1200px;margin:0 auto;padding:16px 1.25rem;display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+.search-wrap{flex:1;min-width:200px;position:relative;}
+.search-wrap i{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:0.88rem;}
+.search-input{width:100%;padding:10px 13px 10px 38px;background:var(--card);border:1px solid var(--border);border-radius:11px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;transition:all 0.22s;}
+.search-input:focus{border-color:rgba(108,99,255,0.5);box-shadow:0 0 0 3px rgba(108,99,255,0.1);}
+.search-input::placeholder{color:var(--muted);}
+.filter-group{display:flex;gap:7px;flex-wrap:wrap;}
+.filter-btn{padding:9px 16px;border-radius:9px;border:1px solid var(--border);background:var(--card);font-size:0.8rem;font-weight:500;color:var(--text);transition:all 0.2s;white-space:nowrap;}
+.filter-btn:hover{border-color:rgba(108,99,255,0.4);}
+.filter-btn.active{background:linear-gradient(90deg,var(--accent),#8b85ff);border-color:transparent;color:#fff;}
+
+/* INLINE SELECTORS */
+.inline-wrap{max-width:1200px;margin:0 auto;padding:0 1.25rem;}
+.inline-selectors{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:18px;margin-bottom:18px;}
+.sel-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.sel-label{font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.09em;color:var(--muted);margin-bottom:9px;}
+.sel-pills{display:flex;flex-wrap:wrap;gap:7px;}
+.sel-pill{padding:6px 14px;border-radius:99px;border:1px solid var(--border);font-size:0.8rem;color:var(--text);background:transparent;transition:all 0.2s;-webkit-tap-highlight-color:transparent;}
+.sel-pill:hover{border-color:rgba(108,99,255,0.4);}
+.sel-pill.active{background:linear-gradient(90deg,var(--accent),#8b85ff);border-color:transparent;color:#fff;}
+.load-btn{margin-top:14px;padding:9px 22px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:9px;font-family:'Syne',sans-serif;font-weight:600;font-size:0.86rem;transition:all 0.2s;}
+.load-btn:hover{opacity:0.9;}
+
+/* CONTENT GRID — desktop: sidebar + main */
+.content{max-width:1200px;margin:0 auto;padding:0 1.25rem 70px;display:grid;grid-template-columns:280px 1fr;gap:20px;align-items:start;}
+
+/* SIDEBAR */
+.sidebar-glass{background:rgba(255,255,255,0.04);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:18px;position:sticky;top:72px;max-height:calc(100vh - 90px);overflow-y:auto;}
+.sidebar-head{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:14px 18px 10px;}
+.subject-list{display:flex;flex-direction:column;gap:2px;padding:0 8px 10px;}
+.subject-item{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:11px;cursor:pointer;transition:all 0.2s;border:1px solid transparent;-webkit-tap-highlight-color:transparent;}
+.subject-item:hover{background:rgba(255,255,255,0.04);border-color:var(--border);}
+.subject-item.active{background:rgba(108,99,255,0.12);border-color:rgba(108,99,255,0.3);}
+.subject-dot{width:7px;height:7px;min-width:7px;border-radius:50%;background:var(--muted);}
+.subject-item.active .subject-dot{background:var(--accent);}
+.subject-code{font-size:0.68rem;color:var(--muted);font-weight:500;}
+.subject-name{font-size:0.85rem;font-weight:500;line-height:1.3;}
+.subject-item.active .subject-name{color:#fff;font-weight:600;}
+.paper-count-badge{margin-left:auto;font-size:0.66rem;font-weight:700;padding:2px 7px;border-radius:99px;background:rgba(108,99,255,0.15);color:var(--accent);white-space:nowrap;}
+
+/* PAPERS PANEL */
+.papers-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:8px;}
+.papers-head h3{font-size:1.15rem;font-weight:700;}
+.papers-count{font-size:0.78rem;color:var(--muted);}
+.paper-card{display:flex;align-items:center;gap:14px;padding:16px 18px;margin-bottom:10px;background:var(--card);border:1px solid var(--border);border-radius:14px;transition:all 0.25s;}
+.paper-card:hover{border-color:rgba(108,99,255,0.3);transform:translateX(3px);box-shadow:0 4px 22px rgba(0,0,0,0.2);}
+.paper-icon{width:44px;height:44px;min-width:44px;border-radius:11px;background:rgba(247,37,133,0.12);display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:#f72585;}
+.paper-info{flex:1;min-width:0;}
+.paper-name{font-size:0.9rem;font-weight:600;margin-bottom:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.paper-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.paper-meta span{font-size:0.72rem;color:var(--muted);display:flex;align-items:center;gap:4px;}
+.dl-btn{display:flex;align-items:center;gap:7px;padding:9px 16px;border-radius:9px;flex-shrink:0;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:0.8rem;font-weight:600;border:none;transition:all 0.22s;white-space:nowrap;box-shadow:0 3px 14px rgba(108,99,255,0.35);}
+.dl-btn:hover{transform:translateY(-2px);box-shadow:0 5px 22px rgba(108,99,255,0.5);}
+.dl-btn.downloading{opacity:0.65;pointer-events:none;}
+
+/* SKELETON */
+.skeleton{background:linear-gradient(90deg,rgba(255,255,255,0.04) 0%,rgba(255,255,255,0.08) 50%,rgba(255,255,255,0.04) 100%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:8px;}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.skel-card{height:78px;border-radius:14px;margin-bottom:10px;}
+
+/* EMPTY */
+.empty-state{text-align:center;padding:50px 18px;color:var(--muted);}
+.empty-state .empty-icon{font-size:2.8rem;margin-bottom:14px;opacity:0.35;}
+.empty-state h4{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:7px;}
+
+/* INITIAL PROMPT */
+.initial-prompt{max-width:1200px;margin:0 auto;padding:50px 1.25rem;text-align:center;}
+
+/* TOAST */
+#toast-container{position:fixed;bottom:18px;right:18px;z-index:9999;display:flex;flex-direction:column;gap:8px;max-width:calc(100vw - 36px);}
+.toast{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;background:rgba(22,22,36,0.97);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,0.1);box-shadow:0 6px 26px rgba(0,0,0,0.4);animation:toastIn 0.35s cubic-bezier(0.34,1.56,0.64,1);font-size:0.85rem;}
+.toast.success .toast-icon{color:#4ade80;}
+.toast.error   .toast-icon{color:#f87171;}
+@keyframes toastIn {from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:translateX(0)}}
+@keyframes toastOut{to{opacity:0;transform:translateX(28px)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.animate-in{animation:fadeInUp 0.38s ease forwards;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:800px){
+  .logo-sub{display:none;}
+  .back-btn .back-label{display:none;}
+
+  /* Stacked layout */
+  .content{grid-template-columns:1fr;gap:16px;padding:0 1rem 50px;}
+
+  /* Sidebar becomes horizontal scroll strip */
+  .sidebar-glass{position:static;max-height:none;overflow-x:auto;overflow-y:hidden;border-radius:13px;}
+  .subject-list{flex-direction:row;flex-wrap:nowrap;overflow-x:auto;gap:6px;padding:8px;-webkit-overflow-scrolling:touch;}
+  .subject-item{flex-shrink:0;white-space:nowrap;padding:9px 13px;border-radius:99px;}
+  .subject-dot{display:none;}
+  .subject-code{display:none;}
+  .paper-count-badge{display:none;}
+  .sidebar-head{padding:10px 13px 6px;white-space:nowrap;}
+
+  /* Paper cards */
+  .paper-card{flex-wrap:wrap;gap:10px;padding:13px;}
+  .paper-icon{width:38px;height:38px;min-width:38px;font-size:1rem;}
+  .paper-name{font-size:0.84rem;white-space:normal;}
+  .dl-btn{width:100%;justify-content:center;padding:10px;}
+
+  /* Inline selectors */
+  .sel-grid{grid-template-columns:1fr;}
+
+  .controls{padding:12px 1rem;flex-direction:column;align-items:stretch;}
+  .search-wrap{min-width:unset;}
+  .filter-group{overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px;-webkit-overflow-scrolling:touch;}
+  .filter-btn{flex-shrink:0;}
+
+  .topbar{padding:16px 1rem 0;}
+
+  #toast-container{right:10px;bottom:10px;}
+  .toast{width:100%;}
+}
+
+@media(max-width:420px){
+  .paper-meta{flex-direction:column;gap:3px;}
+  .hdr-right .badge{display:none;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
+      <div>
+        <div class="logo-text">SBTET <span></span></div>
+        <div class="logo-sub">Question Paper Portal</div>
+      </div>
+    </a>
+    <div class="hdr-right">
+      <div class="badge">C23 SCHEME</div>
+      <a href="/" class="back-btn"><i class="fas fa-arrow-left"></i><span class="back-label"> Home</span></a>
+    </div>
+  </div>
+</header>
+
+<div class="topbar">
+  <div class="breadcrumb">
+    <a href="/">Home</a>
+    <i class="fas fa-chevron-right" style="font-size:0.6rem;"></i>
+    <span>Question Papers</span>
+    <span id="bc-branch" style="display:none;display:contents;">
+      <i class="fas fa-chevron-right" style="font-size:0.6rem;display:none;" id="bc-arrow"></i>
+      <span id="bc-branch-text"></span>
+    </span>
+  </div>
+  <h1 class="page-title" id="page-title">Question Papers</h1>
+  <p class="page-sub" id="page-sub">Browse and download C23 scheme question papers</p>
+</div>
+
+<div class="controls">
+  <div class="search-wrap">
+    <i class="fas fa-search"></i>
+    <input type="text" class="search-input" id="search-input" placeholder="Search subjects or papers...">
+  </div>
+  <div class="filter-group" id="sem-filters"></div>
+</div>
+
+<div class="inline-wrap" id="inline-selectors-wrap" style="display:none;">
+  <div class="inline-selectors">
+    <div class="sel-grid">
+      <div>
+        <div class="sel-label">Branch</div>
+        <div class="sel-pills" id="branch-pills">
+          {% for b in branches %}
+          <button class="sel-pill" data-branch="{{ b.code }}">{{ b.code }}</button>
+          {% endfor %}
+        </div>
+      </div>
+      <div>
+        <div class="sel-label">Semester</div>
+        <div class="sel-pills" id="sem-pills">
+          {% for s in semesters %}
+          <button class="sel-pill" data-sem="{{ s.name }}">{{ s.name }}</button>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <button class="load-btn" onclick="loadSubjectsFromInline()">
+      <i class="fas fa-search"></i> Load Subjects
+    </button>
+  </div>
+</div>
+
+<div class="content" id="main-content" style="display:none;">
+  <div>
+    <div class="sidebar-glass">
+      <div class="sidebar-head">Subjects</div>
+      <div id="subject-list" class="subject-list"></div>
+    </div>
+  </div>
+  <div>
+    <div id="papers-panel">
+      <div class="empty-state">
+        <div class="empty-icon"><i class="fas fa-hand-pointer"></i></div>
+        <h4>Select a Subject</h4>
+        <p>Click on any subject to view its question papers</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="initial-prompt" id="initial-prompt">
+  <div style="font-size:3.5rem;opacity:0.18;margin-bottom:16px;"><i class="fas fa-file-pdf"></i></div>
+  <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:7px;">Loading Papers...</h3>
+  <p style="color:var(--muted);">Please wait while we fetch subjects</p>
+</div>
+
+<footer style="border-top:1px solid var(--border);padding:26px 1.25rem;text-align:center;color:var(--muted);font-size:0.8rem;">
+  SBTET Question Paper Portal &middot; C23 Scheme &middot; For educational purposes only
+</footer>
+
+<div id="toast-container"></div>
+
+<script>
+var urlP = new URLSearchParams(window.location.search);
+var currentBranch = urlP.get('branch') || sessionStorage.getItem('branch') || '';
+var currentSem    = urlP.get('semester') || sessionStorage.getItem('semester') || '';
+var currentSubjectId = null;
+var subjectsData = [];
+var papersCache = {};
+var inlineBranch = null, inlineSem = null;
+
+var BRANCH_NAMES = {'CME':'Computer Engineering','ECE':'Electrical & Communication Engineering','ME':'Mechanical Engineering','CIVIL':'Civil Engineering'};
+
+$(document).ready(function(){
+  if(currentBranch && currentSem){
+    loadSubjects(currentBranch, currentSem);
+  } else {
+    $('#initial-prompt').hide();
+    $('#inline-selectors-wrap').show();
+    {% for s in semesters %}
+    $('#sem-filters').append('<button class="filter-btn" data-sem="{{ s.name }}">{{ s.name }}</button>');
+    {% endfor %}
+  }
+
+  $(document).on('click','.filter-btn[data-sem]',function(){
+    var sem=$(this).data('sem');
+    if(currentSem===sem && $(this).hasClass('active')){
+      $(this).removeClass('active'); currentSem=''; renderSubjectList(subjectsData);
+    } else {
+      $('.filter-btn').removeClass('active'); $(this).addClass('active');
+      currentSem=sem;
+      if(currentBranch) loadSubjects(currentBranch,currentSem);
+    }
+  });
+
+  $('#search-input').on('input',function(){ filterSubjects($(this).val().trim().toLowerCase()); });
+
+  $(document).on('click','.sel-pill[data-branch]',function(){
+    $('.sel-pill[data-branch]').removeClass('active'); $(this).addClass('active');
+    inlineBranch=$(this).data('branch');
+  });
+  $(document).on('click','.sel-pill[data-sem]',function(){
+    $('.sel-pill[data-sem]').removeClass('active'); $(this).addClass('active');
+    inlineSem=$(this).data('sem');
+  });
+});
+
+function loadSubjectsFromInline(){
+  if(!inlineBranch || !inlineSem){ showToast('Select both branch and semester','error'); return; }
+  currentBranch=inlineBranch; currentSem=inlineSem;
+  $('#inline-selectors-wrap').hide();
+  loadSubjects(currentBranch,currentSem);
+}
+
+function loadSubjects(branch,sem){
+  $('#initial-prompt').show().html('<div style="font-size:2.5rem;opacity:0.2;margin-bottom:14px;"><i class="fas fa-circle-notch fa-spin"></i></div><p style="color:var(--muted);">Loading subjects...</p>');
+  $('#main-content').hide();
+  $.ajax({
+    url:'/get-subjects', data:{branch:branch,semester:sem},
+    success:function(data){
+      subjectsData=data.subjects;
+      $('#initial-prompt').hide(); $('#main-content').show();
+      renderSubjectList(subjectsData);
+      updateHeader(branch,sem);
+      buildSemFilters();
+    },
+    error:function(){
+      $('#initial-prompt').html('<p style="color:var(--muted);">Failed to load. Try again.</p>');
+      showToast('Failed to load subjects','error');
+    }
+  });
+}
+
+function buildSemFilters(){
+  $('#sem-filters').empty();
+  var sems=[...new Set(subjectsData.map(function(s){return s.semester;}))];
+  sems.forEach(function(s){
+    var btn=$('<button class="filter-btn" data-sem="'+s+'">'+s+'</button>');
+    if(s===currentSem) btn.addClass('active');
+    $('#sem-filters').append(btn);
+  });
+}
+
+function updateHeader(branch,sem){
+  $('#page-title').text(branch+' \u2014 '+sem);
+  $('#page-sub').text((BRANCH_NAMES[branch]||branch)+' \u00b7 C23 Scheme');
+  $('#bc-arrow').show();
+  $('#bc-branch-text').text(branch+' \u00b7 '+sem);
+  document.title=branch+' '+sem+' \u2014 SBTET Hub';
+}
+
+function renderSubjectList(subjects){
+  var list=$('#subject-list').empty();
+  if(!subjects.length){ list.append('<div style="padding:16px;text-align:center;color:var(--muted);font-size:0.83rem;">No subjects found</div>'); return; }
+  subjects.forEach(function(s){
+    var badge = papersCache[s.id]!==undefined ? '<div class="paper-count-badge">'+papersCache[s.id].length+'</div>' : '';
+    var item=$('<div class="subject-item'+(currentSubjectId==s.id?' active':'')+'" data-id="'+s.id+'"><div class="subject-dot"></div><div style="flex:1;min-width:0;"><div class="subject-code">'+s.code+'</div><div class="subject-name">'+s.name+'</div></div>'+badge+'</div>');
+    item.on('click',function(){
+      $('.subject-item').removeClass('active'); $(this).addClass('active');
+      currentSubjectId=s.id;
+      loadPapers(s);
+      // on mobile scroll papers into view
+      if(window.innerWidth<=800){ document.getElementById('papers-panel').scrollIntoView({behavior:'smooth',block:'start'}); }
+    });
+    list.append(item);
+  });
+}
+
+function filterSubjects(q){
+  if(!q){ renderSubjectList(subjectsData); return; }
+  var filtered=subjectsData.filter(function(s){ return s.name.toLowerCase().includes(q)||(s.code&&s.code.toLowerCase().includes(q)); });
+  renderSubjectList(filtered);
+}
+
+function loadPapers(subject){
+  if(papersCache[subject.id]!==undefined){ renderPapers(subject,papersCache[subject.id]); return; }
+  $('#papers-panel').html('<div class="papers-head"><h3>'+subject.name+'</h3></div><div class="skel-card skeleton"></div><div class="skel-card skeleton" style="opacity:0.7;"></div><div class="skel-card skeleton" style="opacity:0.4;"></div>');
+  $.ajax({
+    url:'/get-papers', method:'POST', contentType:'application/json',
+    data:JSON.stringify({subject_id:subject.id}),
+    success:function(data){
+      papersCache[subject.id]=data.papers;
+      renderPapers(subject,data.papers);
+      $('.subject-item[data-id="'+subject.id+'"]').find('.paper-count-badge').remove();
+      $('.subject-item[data-id="'+subject.id+'"]').append('<div class="paper-count-badge">'+data.papers.length+'</div>');
+    },
+    error:function(){ $('#papers-panel').html('<div class="empty-state"><div class="empty-icon"><i class="fas fa-triangle-exclamation"></i></div><h4>Load Failed</h4><p>Could not load papers. Try again.</p></div>'); }
+  });
+}
+
+function renderPapers(subject,papers){
+  var panel=$('#papers-panel').empty();
+  panel.append('<div class="papers-head"><h3>'+subject.name+'</h3><div class="papers-count">'+papers.length+' paper'+(papers.length!==1?'s':'')+'</div></div>');
+  if(!papers.length){
+    panel.append('<div class="empty-state"><div class="empty-icon"><i class="fas fa-file-circle-xmark"></i></div><h4>No Papers Available</h4><p>No question papers uploaded yet for <strong>'+subject.name+'</strong>.<br>Check back later.</p></div>');
+    return;
+  }
+  papers.forEach(function(p,i){
+    var date=new Date(p.upload_date).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+    var card=$('<div class="paper-card animate-in" style="animation-delay:'+(i*0.06)+'s"><div class="paper-icon"><i class="fas fa-file-pdf"></i></div><div class="paper-info"><div class="paper-name">'+(p.original_name||'Question Paper')+'</div><div class="paper-meta"><span><i class="fas fa-calendar-alt"></i> '+date+'</span><span><i class="fas fa-download"></i> '+(p.download_count||0)+' downloads</span><span><i class="fas fa-book"></i> '+subject.code+'</span></div></div><a href="/download/'+p.id+'" class="dl-btn" target="_blank" onclick="trackDownload(this)"><i class="fas fa-download"></i> Download</a></div>');
+    panel.append(card);
+  });
+}
+
+function trackDownload(el){
+  var btn=$(el);
+  btn.addClass('downloading').html('<i class="fas fa-spinner fa-spin"></i> Opening...');
+  setTimeout(function(){
+    btn.removeClass('downloading').html('<i class="fas fa-check"></i> Done');
+    showToast('Download started!','success');
+    setTimeout(function(){ btn.html('<i class="fas fa-download"></i> Download'); },2200);
+  },1100);
+}
+
+function showToast(msg,type){
+  type=type||'success';
+  var icon=type==='success'?'check-circle':'exclamation-circle';
+  var t=$('<div class="toast '+type+'"><span class="toast-icon"><i class="fas fa-'+icon+'"></i></span><span>'+msg+'</span></div>');
+  $('#toast-container').append(t);
+  setTimeout(function(){ t.css('animation','toastOut 0.35s forwards'); setTimeout(function(){ t.remove(); },350); },3500);
+}
+</script>
+</body>
+</html>
